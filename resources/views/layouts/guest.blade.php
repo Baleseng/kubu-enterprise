@@ -26,5 +26,9 @@
                 {{ $slot }}
             </div>
         </div>
+
+
+        @include('includes.user.footer')
+
     </body>
 </html>

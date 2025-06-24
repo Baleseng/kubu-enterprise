@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionAdminController;
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // User routes
@@ -18,8 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
+
+});
 
 
 // Admin routes
@@ -33,16 +34,12 @@ Route::prefix('admin')->group(function () {
     });
 
     Route::middleware('auth:admin')->group(function () {
-        Route::post('logout', [AuthenticatedSessionAdminController::class, 'destroy'])->name('admin.logout');
+        Route::post('/', [AuthenticatedSessionAdminController::class, 'destroy'])->name('admin.logout');
     });
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-    
-    // Other protected admin routes
+    Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');  
 });
 
 

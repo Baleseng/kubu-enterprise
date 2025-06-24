@@ -1,6 +1,6 @@
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="w-full mx-auto px-4 sm:px-3 lg:px-4">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -17,6 +17,8 @@
                     </x-nav-link>
                 </div>
             </div>
+            @if (Route::has('login'))
+            @auth
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -61,6 +63,12 @@
                     </svg>
                 </button>
             </div>
+
+           
+
+            
+
+            
         </div>
     </div>
 
@@ -97,4 +105,18 @@
             </div>
         </div>
     </div>
+
+     @else
+
+    <div class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse">
+        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+            <a href="{{ route('login') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border  hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Sign in</a>
+            <a href="{{ route('register') }}" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">Sign up</a>
+        </div>
+    </div>
+
+     @endauth
+     @endif
+
+   
 </nav>
