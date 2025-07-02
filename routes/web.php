@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionAdminController;
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
+use App\Http\Controllers\Admin\ProductController;
 
 Route::get('/', function () {
     return view('home');
@@ -18,8 +19,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
 });
 
 
@@ -39,7 +38,10 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    Route::get('/dashboard', function () { return view('admin.dashboard'); })->name('admin.dashboard');  
+    
+    Route::get('/', [ProductController::class,'dashboard'])->name('admin'); 
+    Route::get('/create', [ProductController::class,'create']);
+    Route::post('/create', [ProductController::class, 'store'])->name('admin.create');
 });
 
 

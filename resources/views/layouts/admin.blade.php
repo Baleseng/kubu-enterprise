@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -20,7 +21,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             
-
+            @include('includes.admin.navigation')
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">
@@ -29,6 +30,8 @@
                     </div>
                 </header>
             @endisset
+
+             @include('includes.admin.sidebar')
 
             <!-- Page Content -->
             <main>

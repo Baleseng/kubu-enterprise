@@ -28,7 +28,7 @@ class AuthenticatedSessionAdminController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+            return redirect()->intended('admin');
         }
         return redirect('admin/login')->with('error', 'Invalid credentials');
     }

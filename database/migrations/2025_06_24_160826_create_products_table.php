@@ -16,21 +16,17 @@ return new class extends Migration
 
             $table->integer('admin_id')->nullable();
 
-            $table->integer('page_views')->default(0); // Track page views
-            $table->integer('button_clicks')->default(0); // Track button clicks
-            $table->integer('href_clicks')->default(0); // Track href clicks
-    
-            $table->string('file_path');
-            $table->string('original_name');
-
+            $table->string('file_path'); // This will store the path to the uploaded file
+            
             $table->string('product_title');
-            $table->text('product_description')->nullable();
-            $table->string('product_review');
-            $table->string('product_stock');
-            $table->string('product_quantity');
-            $table->string('product_status');
-            $table->string('product_category');
-            $table->string('product_country');
+            $table->integer('product_price');
+            $table->text('product_description');
+            $table->string('product_status')->nullable();
+            $table->string('product_category')->nullable();
+            $table->integer('product_quantity')->default(1);
+            $table->integer('product_rating')->default(0);
+            $table->integer('product_review')->default(0);
+            
             $table->timestamps();
         });
     }
