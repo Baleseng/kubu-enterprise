@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Admin;
-use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
@@ -16,8 +17,16 @@ class ProductController extends Controller
     public function dashboard(Admin $url,Request $request)
     {
         $url = 'admin';
-        $products = Product::latest()->get();
-        return view('admin.dashboard', compact('products','url'));
+        
+        $product = DB::table('products')
+        ->where('product_instock','In')
+        ->orderBy('updated_at', 'desc')->get();
+
+        $ordered = DB::table('products')
+        ->where('product_instock','In')
+        ->orderBy('updated_at', 'desc')->get();
+
+        return view('admin.dashboard', compact('product','ordered','url'));
     }
 
     /**
@@ -35,34 +44,46 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_title' => 'required|string|max:255',
-            
+
+            'admin_id' => 'required',
+
             'file' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file_keywords' => 'required|string|max:255',
+            'file_description' => 'required|string|max:255',
             
+            'product_name' => 'required|string|max:255',
             'product_price' => 'nullable|string',
             'product_description' => 'nullable|string',
             'product_status' => 'required|string|max:255',
             'product_category' => 'required|string|max:255',
-            'product_quantity' => 'required',
-            'product_review' => 'required',
-            'product_rating' => 'required',
+            'product_type' => 'required|string|max:255',
+            'product_brand' => 'required|string|max:255',
+            'product_instock' => 'required',
+            'product_quantity' => 'nullable|string',
         ]);
 
         $filePath = $request->file('file')->store('products', 'public');
 
         Product::create([
-            'product_title' => $request->product_title,
+            
+            'admin_id' => $request->admin_id,
+
             'file_path' => $filePath,
+            'file_keywords' => $request->file_keywords,
+            'file_description' => $request->file_description,
+
+            'product_name' => $request->product_name,
             'product_price' => $request->product_price,
             'product_description' => $request->product_description,
             'product_status' => $request->product_status,
             'product_category' => $request->product_category,
+            'product_type' => $request->product_type,
+            'product_brand' => $request->product_brand,
+            'product_instock' => $request->product_instock,
             'product_quantity' => $request->product_quantity,
-            'product_review' => $request->product_review,
-            'product_rating' => $request->product_rating,
         ]);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('admin.dashboard')
             ->with('success', 'product created successfully.');
     }
 
@@ -88,24 +109,20 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $request->validate([
-            'product_title' => 'required|string|max:255',
+            'product_name' => 'required|string|max:255',
             'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
             'product_description' => 'nullable|string',
             'product_status' => 'required|string|max:255',
             'product_category' => 'required|string|max:255',
-            'product_quantity' => 'required',
-            'product_review' => 'required',
-            'product_rating' => 'required',
+            'product_instock' => 'required',
         ]);
 
         $data = [
-            'product_title' => $request->title,
+            'product_name' => $request->product_name,
             'product_description' => $request->description,
             'product_status' => $request->status,
             'product_category' => $request->category,
-            'product_quantity' => $request->quantity,
-            'product_review' => $request->review,
-            'product_rating' => $request->rating,
+            'product_instock' => $request->instock,
         ];
 
         if ($request->hasFile('file')) {

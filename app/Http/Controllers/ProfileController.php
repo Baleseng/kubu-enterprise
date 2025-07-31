@@ -12,12 +12,7 @@ use Illuminate\View\View;
 class ProfileController extends Controller
 {
     
-    public function product(Product $id, User $user, Request $request)
-    {
-        $url = DB::table('users')->select('users.*')->get();
-        return view('/file', compact('url','id'));
-    }
-
+    
     /**
      * Display the user's profile form.
      */

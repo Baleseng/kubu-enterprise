@@ -7,9 +7,11 @@
         @csrf      
             
             <input type="hidden" value="{{ Auth::user()->id }}" name="admin_id"/>
+             
+            <input type="hidden" value="test" name="file_keywords"/>
+            <input type="hidden" value="test" name="file_description"/>
 
-            <input type="hidden" value="0" name="product_review"/>
-            <input type="hidden" value="0" name="product_rating"/>
+            
             <div class="flex">
 
                 <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
@@ -42,44 +44,71 @@
                 </div>
 
                 <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
+                    
                     <div class="mb-6 w-100">
-                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                        <input type="text" id="default-input" name="product_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Title</label>
+                        <input type="text" id="default-input" name="product_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
 
 
 
                     <div class="mb-6 w-100">
-                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                        <input type="text" id="default-input" name="product_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
+                        <input type="number" id="default-input" name="product_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                 
                     <div class="mb-6 w-100">
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
                         <textarea id="message" rows="4" name="product_description" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
                     </div>
 
                     <div class="mb-6 w-100">
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" value="" class="sr-only peer">
-                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
-                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Toggle me</span>
-                        </label>
-                    </div>
-                    <div class="mb-6 w-100">
                     <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Statue</label>
                         <select id="countries" name="product_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Choose a country</option>
-                            <option value="test">test</option>
+                            <option selected>Choose a Status</option>
+                            <option value="Delivered">Ordered</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Prepared">Prepared</option>
+                            <option value="Delivered">Delivered</option>
                         </select>
                     </div>
 
                     <div class="mb-6 w-100">
-                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Statue</label>
+                        <label class="inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="IN" class="sr-only peer" name="product_instock">
+                            <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 dark:peer-checked:bg-blue-600"></div>
+                            <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Product Stock</span>
+                        </label>
+                    </div>
+
+                    <div class="mb-6 w-100">
+                    <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Catergory</label>
                         <select id="countries" name="product_category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                            <option selected>Choose a country</option>
-                            <option value="test">test</option>
+                            <option selected>Choose a Catergory</option>
+                            <option value="FMCG">FMCG</option>
+                            <option value="Office & Stationary">Office & Stationary</option>
+                            <option value="Home Improvement & DIY">Home Improvement & DIY</option>
+                            <option value="Computers, Printers & Accessories">Computers, Printers & Accessories</option>
+                            <option value="Cellphone, Tablets & Wearables">Cellphone, Tablets & Wearables</option>
+                            <option value="TV & Audio">TV & Audio</option>
+                            <option value="Furniture">Furniture</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Smart Home, Security & Wifi">Smart Home, Security & Wifi</option>
+                            <option value="Photography, Drone & Gadgets">Photography, Drone & Gadgets</option>
+                            <option value="Appliances">Appliances</option>
+                            <option value="Power Solutions">Power Solutions</option>
+                            <option value="Luggage & Travel">Luggage & Travel</option>
                         </select>
+                    </div>
+
+                    <div class="mb-6 w-100">
+                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Type</label>
+                        <input type="text" id="default-input" name="product_type" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    </div>
+
+                    <div class="mb-6 w-100">
+                        <label for="default-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Brand</label>
+                        <input type="text" id="default-input" name="product_brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
 
                     <div class="mb-6 w-100">

@@ -35,6 +35,6 @@ class RegisteredAdminController extends Controller
 
         Auth::guard('admin')->login($admin);
 
-        return redirect('/admin');
+        return redirect('/admin/dashboard');
     }
 }

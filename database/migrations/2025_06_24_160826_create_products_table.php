@@ -18,15 +18,19 @@ return new class extends Migration
 
             $table->string('file_path'); // This will store the path to the uploaded file
             
-            $table->string('product_title');
+            $table->string('product_name');
             $table->integer('product_price');
             $table->text('product_description');
-            $table->string('product_status')->nullable();
-            $table->string('product_category')->nullable();
-            $table->integer('product_quantity')->default(1);
-            $table->integer('product_rating')->default(0);
-            $table->integer('product_review')->default(0);
-            
+            $table->string('product_status');
+            $table->string('product_category');
+            $table->string('product_type')->nullable();
+            $table->string('product_brand')->nullable();
+            $table->string('product_instock')->nullable();
+            $table->integer('product_quantity');
+
+            $table->string('file_keywords')->nullable();
+            $table->text('file_description')->nullable();
+
             $table->timestamps();
         });
     }

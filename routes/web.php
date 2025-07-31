@@ -2,47 +2,69 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionAdminController;
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
+use App\Http\Controllers\Admin\Auth\LoginAdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 
-Route::get('/', function () {
-    return view('home');
-});
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CartController;
+
+
+Route::get('/home',[ProductsController::class, 'default'])->name('home');
 
 // User routes
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware('auth:web')->group(function () {
+    Route::get('/',[ProductsController::class, 'index'])->name('dashboard');
+    
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
+    
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::put('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
+    Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+
+
 });
 
-
-// Admin routes
-Route::prefix('admin')->group(function () {
-    Route::middleware('guest:admin')->group(function () {
-        Route::get('register', [RegisteredAdminController::class, 'create'])->name('admin.register');
-        Route::post('register', [RegisteredAdminController::class, 'store']);
-        
-        Route::get('login', [AuthenticatedSessionAdminController::class, 'create'])->name('admin.login');
-        Route::post('login', [AuthenticatedSessionAdminController::class, 'login']);
-    });
-
-    Route::middleware('auth:admin')->group(function () {
-        Route::post('/', [AuthenticatedSessionAdminController::class, 'destroy'])->name('admin.logout');
-    });
-});
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    
     Route::get('/', [ProductController::class,'dashboard'])->name('admin'); 
     Route::get('/create', [ProductController::class,'create']);
     Route::post('/create', [ProductController::class, 'store'])->name('admin.create');
 });
 
-
 require __DIR__.'/auth.php';
+
+// Admin authentication
+Route::prefix('admin')->group(function () {
+    // Login routes
+    Route::get('login', [LoginAdminController::class, 'showLoginForm'])->name('admin.login');
+    Route::post('login', [LoginAdminController::class, 'login']);
+    
+    // Registration routes (if needed)
+    Route::get('register', [RegisteredAdminController::class, 'showRegistrationForm'])->name('admin.register');
+    Route::post('register', [RegisteredAdminController::class, 'register']);
+    
+    // Protected admin routes
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::post('logout', [LoginAdminController::class, 'logout'])->name('admin.logout');
+        Route::get('dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+    });
+});
+
+
+
+

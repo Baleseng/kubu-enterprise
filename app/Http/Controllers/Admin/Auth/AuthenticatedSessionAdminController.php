@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AuthenticatedSessionAdminController extends Controller
 {
@@ -24,25 +21,31 @@ class AuthenticatedSessionAdminController extends Controller
         return view('admin.auth.login');
     }
 
-    public function login(Request $request)
+    public function store(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('admin');
-        }
-        return redirect('admin/login')->with('error', 'Invalid credentials');
-    }
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
 
+        if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/admin/dashboard');
+        }
+
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ])->onlyInput('email');
+    }
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
-        return redirect('/');
+        return redirect('/admin/login');
     }
 
 }
