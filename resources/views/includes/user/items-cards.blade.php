@@ -1,12 +1,15 @@
+<div class="flex">
+
 @foreach ($stock as $item)
-<div class="w-full max-w-xs lg:mx-1.5 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 content-center">
-    <a href="{{ url('/product/'.$item->id.'-'.str_replace(' ', '-',$item->product_name)) }}">
-        <img class="p-8 rounded-t-lg" src="{{ url('storage/'.$item->file_path) }}" alt="product image" />
-    </a>
-    <div class="px-5 pb-5 text-center">
+    <div class="w-80 bg-gray-50 border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 m-2 p-2">
+        <a href="{{ url('/product/'.$item->id.'-'.str_replace(' ', '-',$item->product_name)) }}">
+            <img class="p-8 rounded-t-lg" src="{{ url('storage/public/'.$item->file_path) }}" alt="{{ $item->product_name }}" />
+        </a>
+
         <a href="{{ url('/product/'.$item->id.'-'.str_replace(' ', '-',$item->product_name)) }}">
             <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $item->product_name }}</h5>
         </a>
+
         <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
                 <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -27,9 +30,7 @@
             </div>
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-sm dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
         </div>
-        <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white text-center "></span>
-        </div>
     </div>
-</div>
 @endforeach
+
+</div>

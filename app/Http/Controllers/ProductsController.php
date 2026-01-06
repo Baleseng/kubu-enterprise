@@ -38,4 +38,10 @@ class ProductsController extends Controller
         $url = DB::table('users')->select('users.*')->get();
         return view('/product', compact('url','id'));
     }
+
+    public function example(Product $id, User $user, Request $request)
+    {
+        $url = 'user';
+        return view('/example', compact('url','id'));
+    }
 }

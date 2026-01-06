@@ -22,10 +22,11 @@ return new class extends Migration
             $table->integer('product_price');
             $table->text('product_description');
             $table->string('product_status');
+            $table->string('product_instock')->nullable();
             $table->string('product_category');
             $table->string('product_type')->nullable();
             $table->string('product_brand')->nullable();
-            $table->string('product_instock')->nullable();
+            
             $table->integer('product_quantity');
 
             $table->string('file_keywords')->nullable();

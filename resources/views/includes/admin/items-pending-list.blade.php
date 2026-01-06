@@ -15,7 +15,7 @@
             <th scope="col" class="px-6 py-3">Action</th>
         </tr>
     </thead>
-@foreach ($ordered as $content)
+@foreach ($pending as $content)
     <tbody>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td class="w-4 p-4">

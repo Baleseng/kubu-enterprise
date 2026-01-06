@@ -10,12 +10,11 @@
             <th scope="col" class="px-6 py-3">Name</th>
             <th scope="col" class="px-6 py-3">Price</th>
             <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3">Category</th>
             <th scope="col" class="px-6 py-3">Quantity</th>
             <th scope="col" class="px-6 py-3">Action</th>
         </tr>
     </thead>
-@foreach ($ordered as $content)
+@foreach ($delivered as $content)
     <tbody>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
             <td class="w-4 p-4">
@@ -25,13 +24,10 @@
                 </div>
             </td>
             <th scope="row" class="px-6 py-4">
-                <a href="" class=" font-medium text-gray-900 truncate flex w-56 dark:text-white">{{ $content->product_name }}</a> 
+                <a href="" class=" font-medium text-gray-900 truncate flex w-60 dark:text-white">{{ $content->product_name }}</a> 
             </th>
             <td class="px-6 py-4">{{ $content->product_price }}</td>
             <td class="px-6 py-4">{{ $content->product_status }}</td>
-            <td class="px-6 py-4">
-                <span class="truncate flex w-38">{{ $content->product_category }}</span>
-            </td>
             <td class="px-6 py-4">{{ $content->product_quantity }}</td>
             <td class="px-6 py-4">
                 <x-dropdown align="right" width="48">

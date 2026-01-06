@@ -22,12 +22,21 @@ class ProductController extends Controller
         ->where('product_instock','In')
         ->orderBy('updated_at', 'desc')->get();
 
-        $ordered = DB::table('products')
-        ->where('product_instock','In')
+        $delivered = DB::table('products')
+        ->where('product_status','delivered')
         ->orderBy('updated_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('product','ordered','url'));
+        $ordered = DB::table('products')
+        ->where('product_status','ordered')
+        ->orderBy('updated_at', 'desc')->get();
+
+        $pending = DB::table('products')
+        ->where('product_status','pending')
+        ->orderBy('updated_at', 'desc')->get();
+
+        return view('admin.dashboard', compact('product','delivered','ordered','pending','url'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +56,7 @@ class ProductController extends Controller
 
             'admin_id' => 'required',
 
-            'file' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file_path' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
             'file_keywords' => 'required|string|max:255',
             'file_description' => 'required|string|max:255',
             
@@ -62,7 +71,7 @@ class ProductController extends Controller
             'product_quantity' => 'nullable|string',
         ]);
 
-        $filePath = $request->file('file')->store('products', 'public');
+        $filePath = $request->file('file_path')->store('public');
 
         Product::create([
             
@@ -92,7 +101,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('products.show', compact('product'));
+        return view('admin.show', compact('product'));
     }
 
     /**
@@ -100,7 +109,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit', compact('product'));
+        return view('admin.edit', compact('product'));
     }
 
     /**
@@ -110,7 +119,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'product_name' => 'required|string|max:255',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file_path' => 'nullable|file|mimes:pdf,doc,docx,jpg,png|max:2048',
             'product_description' => 'nullable|string',
             'product_status' => 'required|string|max:255',
             'product_category' => 'required|string|max:255',
@@ -130,13 +139,21 @@ class ProductController extends Controller
             Storage::disk('public')->delete($product->file_path);
             
             // Store new file
-            $data['file_path'] = $request->file('file')->store('products', 'public');
+            $data['file_path'] = $request->file('file_path')->store('public');
         }
 
         $product->update($data);
 
-        return redirect()->route('products.index')
+        return redirect()->route('admin.dashboard')
             ->with('success', 'product updated successfully.');
+    }
+
+    /**
+     * Show specified region.
+     */
+    public function region(Product $product)
+    {
+        return view('admin.region', compact('product'));
     }
 
     /**
@@ -150,7 +167,7 @@ class ProductController extends Controller
         // Delete the record
         $product->delete();
 
-        return redirect()->route('products.index')
+        return redirect()->route('admin.dashboard')
             ->with('success', 'product deleted successfully.');
     }
 }
