@@ -16,7 +16,7 @@ class ProductsController extends Controller
         $url = 'user';
 
         $stock = DB::table('products')
-        ->where('product_instock','In')
+        ->where('product_stock','In')
         ->orderBy('updated_at', 'desc')->get();
 
         return view('/home',compact('url','stock'));
@@ -26,11 +26,14 @@ class ProductsController extends Controller
     {
         $url = 'user';
 
-        $stock = DB::table('products')
-        ->where('product_instock','In')
-        ->orderBy('updated_at', 'desc')->get();
-
-        return view('/dashboard',compact('url','stock'));
+        $special = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $trends = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $weekend = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $weekday = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $house = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $party = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        
+        return view('/dashboard',compact('url','special','trends','weekend','weekday','house','party'));
     }
 
     public function product(Product $id, User $user, Request $request)

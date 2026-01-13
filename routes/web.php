@@ -56,15 +56,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/create', [ProductController::class,'create']);
         Route::post('/create', [ProductController::class, 'store'])->name('admin.create');
         
-        Route::get('show', [ProductController::class,'show'])->name('admin.show');
+        Route::get('show/{id}', [ProductController::class,'show'])->name('admin.show');
 
-        Route::get('edit', [ProductController::class,'edit'])->name('admin.edit');
-        Route::patch('{id}', [ProductController::class,'update']);
+        Route::get('edit/{id}', [ProductController::class,'edit'])->name('admin.edit');
+        Route::patch('{id}', [ProductController::class,'update'])->name('admin.update');
 
-        Route::get('region', [ProductController::class,'region'])->name('admin.region');
+        Route::get('report/{id}', [ProductController::class,'report'])->name('admin.report');
+        Route::get('archive/{id}', [ProductController::class,'archive'])->name('admin.archive');
 
-        Route::delete('destroy', [ProductController::class,'destroy'])->name('admin.delete');
-        
+        Route::delete('{id}', [ProductController::class,'destroy'])->name('admin.destroy');
         
         Route::post('logout', [LoginAdminController::class, 'logout'])->name('admin.logout');  
         

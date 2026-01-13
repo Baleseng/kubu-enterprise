@@ -22,9 +22,10 @@ class Product extends Model
         'product_description',
         'product_status',
         'product_category',
-        'product_type',
+        'product_section',
+        'product_subsection',
         'product_brand',
-        'product_instock',
+        'product_stock',
         'product_quantity',
         
     ];

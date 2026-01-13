@@ -23,15 +23,6 @@
             
             @include('includes.user.navigation')
 
-            <!-- Page Heading -->
-            @isset($header)
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endisset
-
             <!-- Page Content -->
             <main>
                 {{ $slot }}
@@ -39,6 +30,24 @@
         </div>
 
         @include('includes.user.footer')
+
+    <script>// Get references to the elements
+    const toggleButton = document.getElementById('toggleButton');
+    const content = document.getElementById('content');
+
+    // Add a click event listener to the button
+    toggleButton.addEventListener('click', function() {
+    // Toggle the 'line-clamp-3' class on the content element
+    content.classList.toggle('line-clamp-5');
+
+    // Update the button text based on whether the content is clamped
+    if (content.classList.contains('line-clamp-5')) {
+        toggleButton.textContent = 'Show more';
+    } else {
+            toggleButton.textContent = 'Show less';
+            }
+        });
+    </script>
 
     <script>
         function toggleModal() { 
