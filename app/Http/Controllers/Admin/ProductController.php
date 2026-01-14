@@ -92,17 +92,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Admin $url, Product $id,Request $request)
-    {
-        $url = 'admin';
-        Product::find($id);
-
-        return view('admin.show', compact('url','id'));
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Admin $url, Product $id)
@@ -117,31 +106,50 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $id)
     {
-        
+
+        $validated = $request->validate([
+            'file_path' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
+            'file_keywords' => 'required|string|max:255',
+            'file_description' => 'required|string|max:255',
+            'file_status' => 'required|string|max:255',
+            
+            'product_name' => 'required|string|max:255',
+            'product_price' => 'nullable|string',
+            'product_description' => 'nullable|string',
+            'product_status' => 'required|string|max:255',
+            'product_category' => 'required|string|max:255',
+            'product_section' => 'required|string|max:255',
+            'product_subsection' => 'required|string|max:255',
+            'product_brand' => 'required|string|max:255',
+            'product_stock' => 'required',
+            'product_quantity' => 'nullable|string',
+        ]);
+
+        if ($request->hasFile('file_path')) {
+            // Delete old image if it exists
+            if ($id->file_path) {
+                Storage::disk('public')->delete($id->file_path);
+            }
+
+            // Store new image and get the path
+            $path = $request->file('file_path')->store('images', 'public');
+            $validated['file_path'] = $path;
+        }
+
+        $id->update($validated);
+
+        return redirect()->route('admin.dashboard')->with('success', 'product updated successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Admin $url, Product $id,Request $request)
+    {
         $url = 'admin';
-        
         Product::find($id);
 
-        $id->admin_id = $request->get('admin_id');
-
-        $id->file_path = $request->get('file_path');
-        $id->file_keywords = $request->get('file_keywords');
-        $id->file_description = $request->get('file_description');
-        $id->file_status = $request->get('file_status');
-        
-        $id->product_name = $request->get('product_name');
-        $id->product_price = $request->get('product_price');
-        $id->product_description = $request->get('product_description');
-        $id->product_status = $request->get('product_status');
-        $id->product_category = $request->get('product_category');
-        $id->product_section = $request->get('product_section');
-        $id->product_subsection = $request->get('product_subsection');
-        $id->product_brand = $request->get('product_brand');
-        $id->product_stock = $request->get('product_stock');
-        $id->product_quantity = $request->get('product_quantity');
-
-        $id->save();
-        return redirect()->route('admin.dashboard');
+        return view('admin.show', compact('url','id'));
     }
 
     /**

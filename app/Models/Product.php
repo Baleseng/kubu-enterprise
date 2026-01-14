@@ -16,6 +16,7 @@ class Product extends Model
         'file_path',
         'file_keywords',
         'file_description',
+        'file_status',
 
         'product_name',
         'product_price',

@@ -11,12 +11,13 @@
         </td>
         <td class="px-6 py-4"><span class="flex font-semibold">R {{ $content->product_price }}</span></td>
         <td class="px-6 py-4">
-            <a href="" class="font-semibold text-blue-600 hover:underline flex dark:text-white">{{ $content->product_status }}</a>
+            <a href="" class="font-semibold text-blue-600 hover:underline flex dark:text-white {{ $content->product_status }}">{{ $content->product_status }}</a>
         </td>
-        <td class="px-6 py-4">
-            <span class="flex w-38">{{ $content->product_category }}</span>
-        </td>
+        
         <td class="px-6 py-4">{{ $content->product_quantity }}</td>
+        <td class="px-6 py-4">
+            <span class="flex w-38 capitalize {{ $content->file_status }}">{{ $content->file_status }}</span>
+        </td>
         <td class="px-6 py-4">
             <ul class="flex flex-wrap items-center justify-center text-heading">
                 <li>
@@ -44,6 +45,7 @@
                 </li>
             </ul>
         </td>
+
     </tr>
 </tbody>
 

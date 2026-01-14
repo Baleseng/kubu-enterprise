@@ -26,7 +26,7 @@ class ProductsController extends Controller
     {
         $url = 'user';
 
-        $special = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $special = DB::table('products')->where('product_category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
         $trends = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
         $weekend = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
         $weekday = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();

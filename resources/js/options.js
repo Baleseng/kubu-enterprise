@@ -1,8 +1,16 @@
-const data = {
+// Store your data in a global scope
+window.selectData = {
   "Promo Special": {
     sections: {
-      'weekend': ["", ""],
-      'weekday': ["", ""]
+      'Back to School': ["Arts & Crafts","Books Covers & Labels","Books & Notebooks","Calculator","Colouring & Painting","Correction","Cutting & Sticking","Filing & Folder","Hobbies & Crafts","Student Magazine","Office Supplies","Paper, Envelopes & Cardboards","Pens Bags & Cases","Pens, Pencils & Markers","Rulers & Measuring","Stationary Sets"],
+      'Valentine Specials': ["", ""],
+      'Easter Specials': ["", ""],
+      'Mothers Day Specials': ["", ""],
+      'Fathers Day Specials': ["", ""],
+      'Heritage Day Specials': ["", ""],
+      'Black Friday Specials': ["", ""],
+      'Cyber Monday Specials': ["", ""],
+      'Christmas Specials': ["", ""],
     }
   },
   'Groceries': {
@@ -73,22 +81,44 @@ const data = {
   },
 };
 
-const categorySelect = document.getElementById('category');
-const sectionSelect = document.getElementById('section');
-const subsectionSelect = document.getElementById('subsection');
+function initializeSelects() {
+  const categorySelect = document.getElementById('category');
+  const sectionSelect = document.getElementById('section');
+  const subsectionSelect = document.getElementById('subsection');
+  
+  if (!categorySelect || !sectionSelect || !subsectionSelect) {
+    return; // Elements not yet in DOM
+  }
 
-// Level 1 to Level 2
-categorySelect.addEventListener('change', function() {
-  const selectedCategory = this.value;
+  // Remove existing listeners to prevent duplicates
+  categorySelect.removeEventListener('change', handleCategoryChange);
+  sectionSelect.removeEventListener('change', handleSectionChange);
+  
+  // Add new listeners
+  categorySelect.addEventListener('change', handleCategoryChange);
+  sectionSelect.addEventListener('change', handleSectionChange);
+  
+  // Initialize state
+  if (categorySelect.value) {
+    handleCategoryChange.call(categorySelect);
+  }
+}
+
+// Event handlers
+function handleCategoryChange() {
+  const categorySelect = this;
+  const sectionSelect = document.getElementById('section');
+  const subsectionSelect = document.getElementById('subsection');
+  const selectedCategory = categorySelect.value;
   
   // Reset children
   sectionSelect.innerHTML = '<option value="">Select Section</option>';
   subsectionSelect.innerHTML = '<option value="">Select subsection</option>';
   subsectionSelect.disabled = true;
 
-  if (selectedCategory) {
+  if (selectedCategory && window.selectData[selectedCategory]) {
     sectionSelect.disabled = false;
-    const sections = Object.keys(data[selectedCategory].sections);
+    const sections = Object.keys(window.selectData[selectedCategory].sections);
     
     sections.forEach(section => {
       let opt = new Option(section.charAt(0).toUpperCase() + section.slice(1), section);
@@ -97,25 +127,39 @@ categorySelect.addEventListener('change', function() {
   } else {
     sectionSelect.disabled = true;
   }
-});
+}
 
-// Level 2 to Level 3
-sectionSelect.addEventListener('change', function() {
+function handleSectionChange() {
+  const sectionSelect = this;
+  const categorySelect = document.getElementById('category');
+  const subsectionSelect = document.getElementById('subsection');
   const selectedCategory = categorySelect.value;
-  const selectedSection = this.value;
+  const selectedSection = sectionSelect.value;
 
   // Reset Level 3
   subsectionSelect.innerHTML = '<option value="">Select subsection</option>';
 
-  if (selectedSection) {
+  if (selectedSection && window.selectData[selectedCategory]) {
     subsectionSelect.disabled = false;
-    const cities = data[selectedCategory].sections[selectedSection];
+    const subsections = window.selectData[selectedCategory].sections[selectedSection];
     
-    cities.forEach(subsection => {
+    subsections.forEach(subsection => {
       let opt = new Option(subsection, subsection);
       subsectionSelect.add(opt);
     });
   } else {
     subsectionSelect.disabled = true;
   }
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', initializeSelects);
+
+// Re-initialize when tabs change (if using Laravel Livewire tabs)
+document.addEventListener('livewire:navigated', initializeSelects);
+document.addEventListener('livewire:load', initializeSelects);
+
+// If using Bootstrap tabs
+document.addEventListener('shown.bs.tab', function(event) {
+  setTimeout(initializeSelects, 50); // Small delay to ensure DOM is updated
 });

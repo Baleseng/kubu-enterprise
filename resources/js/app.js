@@ -1,5 +1,6 @@
 import './bootstrap';
 import './preview';
+import './options';
 	
 import Alpine from 'alpinejs';
 
