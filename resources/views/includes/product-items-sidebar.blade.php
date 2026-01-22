@@ -3,9 +3,9 @@
     <!-- Options -->
     <div class="mt-5 lg:row-span-3 lg:mt-5">
         <div class="bg-white border border-default rounded-base shadow-xs p-3">
-            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-5">{{ $id->product_name }}</h1>
+            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-5">{{ $id->name }}</h1>
             
-            <p class="text-3xl font-black tracking-tight text-gray-900">R {{ $id->product_price }}</p>
+            <p class="text-3xl font-black tracking-tight text-gray-900">R {{ $id->price }}</p>
             <!-- Reviews -->
             <div class="mt-6">
                 <h3 class="sr-only">Reviews</h3>
@@ -22,5 +22,5 @@
                     <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
                 </div>
             </div>
-            <p class=" my-2">Availble  stock: <span class="text-green-600 font-bold">{{ $id->product_quantity }}</span></p>
+            <p class=" my-2">Availble  stock: <span class="text-green-600 font-bold">{{ $id->quantity }}</span></p>
         

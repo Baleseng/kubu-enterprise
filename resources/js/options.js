@@ -1,18 +1,5 @@
 // Store your data in a global scope
 window.selectData = {
-  "Promo Special": {
-    sections: {
-      'Back to School': ["Arts & Crafts","Books Covers & Labels","Books & Notebooks","Calculator","Colouring & Painting","Correction","Cutting & Sticking","Filing & Folder","Hobbies & Crafts","Student Magazine","Office Supplies","Paper, Envelopes & Cardboards","Pens Bags & Cases","Pens, Pencils & Markers","Rulers & Measuring","Stationary Sets"],
-      'Valentine Specials': ["", ""],
-      'Easter Specials': ["", ""],
-      'Mothers Day Specials': ["", ""],
-      'Fathers Day Specials': ["", ""],
-      'Heritage Day Specials': ["", ""],
-      'Black Friday Specials': ["", ""],
-      'Cyber Monday Specials': ["", ""],
-      'Christmas Specials': ["", ""],
-    }
-  },
   'Groceries': {
     sections: {
       'Breakfast': ["Cereal","Milk"],
@@ -48,6 +35,12 @@ window.selectData = {
       'Baby & Toddler Food': ["Baby Cereals","Baby Formula"],
       'Bags': ["Backpacks","School Bags","Laptop Bags"],
       'Toys': ["Party Themes","Puzzle","Educational Toys","Soft Toys","Outdoor Toys","Toddlers Toys","Toy Furnature","Books"],
+    }
+  },
+  'Stationary': {
+    sections: {
+      'School': ["Arts & Crafts","Books Covers & Labels","Books & Notebooks","Calculator","Colouring & Painting","Correction","Cutting & Sticking","Filing & Folder","Hobbies & Crafts","Student Magazine","Office Supplies","Paper, Envelopes & Cardboards","Pens Bags & Cases","Pens, Pencils & Markers","Rulers & Measuring","Stationary Sets"],
+      'Office': ["Envelopes","Couries","Filing & Folders","Office Accessories","Office Supplies","Paper & Cardboards","Printers & Inks","Toner","Receipt Books","Receipt Printer"],
     }
   },
   'Liquor': {

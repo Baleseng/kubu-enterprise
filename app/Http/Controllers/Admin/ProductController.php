@@ -15,18 +15,27 @@ class ProductController extends Controller
      * Display a 
       of the resource.
      */
-    public function dashboard(Admin $url,Request $request)
+    public function index(Admin $url,Request $request)
     {
         $url = 'admin';
-        $pro = DB::table('products')->orderBy('updated_at', 'desc')->get();
-        $una = DB::table('products')->where('product_status','unassign')->orderBy('updated_at', 'desc')->get();
-        $ord = DB::table('products')->where('product_status','ordered')->orderBy('updated_at', 'desc')->get();
-        $pre = DB::table('products')->where('product_status','prepared')->orderBy('updated_at', 'desc')->get();
-        $del = DB::table('products')->where('product_status','delivered')->orderBy('updated_at', 'desc')->get();
-        $pen = DB::table('products')->where('product_status','pending')->orderBy('updated_at', 'desc')->get();
-        $arc = DB::table('products')->where('product_status','archive')->orderBy('updated_at', 'desc')->get();
+        $product = DB::table('products')->orderBy('updated_at', 'desc')->get();
+        $product_unassign = DB::table('products')->where('status','unassign')->orderBy('updated_at', 'desc')->get();
+        $product_ordered = DB::table('products')->where('status','ordered')->orderBy('updated_at', 'desc')->get();
+        $product_prepared = DB::table('products')->where('status','prepared')->orderBy('updated_at', 'desc')->get();
+        $product_deliver = DB::table('products')->where('status','delivered')->orderBy('updated_at', 'desc')->get();
+        $product_pending = DB::table('products')->where('status','pending')->orderBy('updated_at', 'desc')->get();
+        $product_archive = DB::table('products')->where('status','archive')->orderBy('updated_at', 'desc')->get();
 
-        return view('admin.dashboard', compact('pro','una','ord','pre','del','pen','url'));
+        return view('admin.products.index', compact(
+            'product',
+            'product_unassign',
+            'product_ordered',
+            'product_prepared',
+            'product_deliver',
+            'product_pending',
+            'product_archive',
+            'url'
+        ));
     }
 
     /**
@@ -35,7 +44,7 @@ class ProductController extends Controller
     public function create()
     {
         $url = 'admin';
-        return view('admin.create');
+        return view('admin.products.create');
     }
 
     /**
@@ -52,16 +61,17 @@ class ProductController extends Controller
             'file_description' => 'required|string|max:255',
             'file_status' => 'required|string|max:255',
             
-            'product_name' => 'required|string|max:255',
-            'product_price' => 'nullable|string',
-            'product_description' => 'nullable|string',
-            'product_status' => 'required|string|max:255',
-            'product_category' => 'required|string|max:255',
-            'product_section' => 'required|string|max:255',
-            'product_subsection' => 'required|string|max:255',
-            'product_brand' => 'required|string|max:255',
-            'product_stock' => 'required',
-            'product_quantity' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'price' => 'nullable|string',
+            'description' => 'nullable|string',
+            'status' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'section' => 'required|string|max:255',
+            'subsection' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'stock' => 'required',
+            'quantity' => 'nullable|string',
+            'folder' => 'required|string|max:255',
         ]);
 
         $filePath = $request->file('file_path')->store('images','public');
@@ -75,16 +85,17 @@ class ProductController extends Controller
             'file_description' => $request->file_description,
             'file_status' => $request->file_status,
 
-            'product_name' => $request->product_name,
-            'product_price' => $request->product_price,
-            'product_description' => $request->product_description,
-            'product_status' => $request->product_status,
-            'product_category' => $request->product_category,
-            'product_section' => $request->product_section,
-            'product_subsection' => $request->product_subsection,
-            'product_brand' => $request->product_brand,
-            'product_stock' => $request->product_stock,
-            'product_quantity' => $request->product_quantity,
+            'name' => $request->name,
+            'price' => $request->price,
+            'description' => $request->description,
+            'status' => $request->status,
+            'category' => $request->category,
+            'section' => $request->section,
+            'subsection' => $request->subsection,
+            'brand' => $request->brand,
+            'stock' => $request->stock,
+            'quantity' => $request->quantity,
+            'folder' => $request->folder,
         ]);
 
         return redirect()->route('admin.dashboard')
@@ -98,7 +109,27 @@ class ProductController extends Controller
     {
         $url = 'admin';
         Product::find($id);
-        return view('admin.edit', compact('id','url'));
+        return view('admin.products.edit', compact('id','url'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function archive(Admin $url, Product $id)
+    {
+        $url = 'admin';
+        Product::find($id);
+        return view('admin.products.show', compact('id','url'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function publish(Admin $url, Product $id)
+    {
+        $url = 'admin';
+        Product::find($id);
+        return view('admin.products.show', compact('id','url'));
     }
 
     /**
@@ -113,16 +144,16 @@ class ProductController extends Controller
             'file_description' => 'required|string|max:255',
             'file_status' => 'required|string|max:255',
             
-            'product_name' => 'required|string|max:255',
-            'product_price' => 'nullable|string',
-            'product_description' => 'nullable|string',
-            'product_status' => 'required|string|max:255',
-            'product_category' => 'required|string|max:255',
-            'product_section' => 'required|string|max:255',
-            'product_subsection' => 'required|string|max:255',
-            'product_brand' => 'required|string|max:255',
-            'product_stock' => 'required',
-            'product_quantity' => 'nullable|string',
+            'name' => 'required|string|max:255',
+            'price' => 'nullable|string',
+            'description' => 'nullable|string',
+            'status' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'section' => 'required|string|max:255',
+            'subsection' => 'required|string|max:255',
+            'brand' => 'required|string|max:255',
+            'stock' => 'required',
+            'quantity' => 'nullable|string',
         ]);
 
         if ($request->hasFile('file_path')) {
@@ -149,7 +180,7 @@ class ProductController extends Controller
         $url = 'admin';
         Product::find($id);
 
-        return view('admin.show', compact('url','id'));
+        return view('admin.products.show', compact('url','id'));
     }
 
     /**
@@ -159,7 +190,7 @@ class ProductController extends Controller
     {
         $url = 'admin';
         Product::find($id);
-        return view('admin.report', compact('id'));
+        return view('admin.products.report', compact('id'));
     }
 
     /**

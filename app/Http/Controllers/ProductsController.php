@@ -26,12 +26,12 @@ class ProductsController extends Controller
     {
         $url = 'user';
 
-        $special = DB::table('products')->where('product_category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
-        $trends = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
-        $weekend = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
-        $weekday = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
-        $house = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
-        $party = DB::table('products')->where('product_stock','In')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $special = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $trends = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $weekend = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $weekday = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $house = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
+        $party = DB::table('products')->where('category','Promo Special')->orderBy('updated_at', 'desc')->limit(6)->get();
         
         return view('/dashboard',compact('url','special','trends','weekend','weekday','house','party'));
     }

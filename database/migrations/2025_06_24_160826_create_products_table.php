@@ -21,18 +21,19 @@ return new class extends Migration
             $table->text('file_description')->nullable();
             $table->string('file_status')->nullable();
 
-            $table->string('product_name');
-            $table->integer('product_price');
-            $table->text('product_description');
-            $table->string('product_status');
-            $table->string('product_stock')->nullable();
-            $table->string('product_category');
-            $table->string('product_section');
-            $table->string('product_subsection')->nullable();
-            $table->string('product_brand')->nullable();
-            $table->integer('product_quantity');
+            $table->string('name');
+            $table->integer('price');
+            $table->text('description');
+            $table->string('status');
+            $table->string('stock')->nullable();
+            $table->string('category');
+            $table->string('section');
+            $table->string('subsection')->nullable();
+            $table->string('brand')->nullable();
+            $table->integer('quantity');
 
-            
+            $table->string('folder')->nullable();
+
             $table->timestamps();
         });
     }

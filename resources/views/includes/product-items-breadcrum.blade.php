@@ -14,7 +14,7 @@
         </li>
         <li>
             <div class="flex items-center">
-                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->product_category }}</a>
+                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->category }}</a>
                 <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
@@ -22,7 +22,7 @@
         </li>
         <li>
             <div class="flex items-center">
-                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->product_section }}</a>
+                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->section }}</a>
                 <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
@@ -30,14 +30,14 @@
         </li>
         <li>
             <div class="flex items-center">
-                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->product_subsection }}</a>
+                <a href="#" class="mr-2 text-sm font-medium text-gray-900">{{ $id->subsection }}</a>
                 <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
                 </svg>
             </div>
         </li>
         <li class="text-sm">
-            <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">{{ $id->product_brand }}</a>
+            <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600">{{ $id->brand }}</a>
         </li>
     </ol>
 </nav>

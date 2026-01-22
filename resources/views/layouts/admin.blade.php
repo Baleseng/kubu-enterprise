@@ -22,7 +22,7 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
             
-            @include('includes.admin.navigation')
+            @include('includes.admin.default-navigation')
             <!-- Page Heading -->
             @isset($header)
                 <header class="bg-white dark:bg-gray-800 shadow">
@@ -32,7 +32,7 @@
                 </header>
             @endisset
 
-             @include('includes.admin.sidebar')
+            @include('includes.admin.default-sidebar')
 
             <!-- Page Content -->
             <main>

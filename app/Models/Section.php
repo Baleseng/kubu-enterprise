@@ -5,30 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Section extends Model
 {
     use HasFactory;
 
     protected $fillable = [
 
         'admin_id',
-        
-        'file_path',
-        'file_keywords',
-        'file_description',
-        'file_status',
 
         'name',
-        'price',
         'description',
         'status',
-        'category',
-        'section',
-        'subsection',
-        'brand',
-        'stock',
-        'quantity',
         'folder',
-        
+
     ];
+
 }
