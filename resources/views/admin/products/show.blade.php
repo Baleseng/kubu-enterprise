@@ -16,7 +16,7 @@
                     <div class="flex flex-wrap gap-2 items-center justify-center">
                         
                         <div class="w-32">
-                            <form method="POST" action="{{ route('admin.'. $id->folder . '.publish', $id->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.'. $id->urlfolder . '.publish', $id->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             
@@ -41,11 +41,11 @@
                         </div>
 
                         <div class="w-32">
-                            <a href="{{ url($url.'/'. $id->folder . '/edit/'.$id->id . '-' . str_replace(' ', '-', $id->name)) }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Edit</a>                            
+                            <a href="{{ url($url.'/'. $id->urlfolder . '/edit/'.$id->id . '-' . str_replace(' ', '-', $id->name)) }}" class="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">Edit</a>                            
                         </div>
 
                         <div class="w-32">
-                            <form method="POST" action="{{ route('admin.'. $id->folder . '.archive', $id->id) }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('admin.'. $id->urlfolder . '.archive', $id->id) }}" enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             
@@ -71,7 +71,7 @@
                         <div class="w-32">
                             <a href="#" class="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-base font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:outline-hidden" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('archive-form-{{ $id->id }}').submit(); }">
                                 Delete
-                                <form id="archive-form-{{ $id->id }}" action="{{ route('admin.'. $id->folder . '.destroy', $id->id) }}" method="POST" style="display: none;">
+                                <form id="archive-form-{{ $id->id }}" action="{{ route('admin.'. $id->urlfolder . '.destroy', $id->id) }}" method="POST" style="display: none;">
                                     @csrf
                                     @method('PATCH')
                                 </form>

@@ -3,11 +3,11 @@
     <!-- Options -->
     <div class="mt-5 lg:row-span-3 lg:mt-5">
         <div class="bg-white border border-default rounded-base shadow-xs p-3">
-            <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-5">{{ $id->name }}</h1>
+            <h1 class="text-2xl font-medium tracking-tight text-gray-900 sm:text-3xl mb-3">{{ $id->name }}</h1>
             
-            <p class="text-3xl font-black tracking-tight text-gray-900">R {{ $id->price }}</p>
+            <p class="text-4xl font-black tracking-tight text-red-600">R {{ $id->price }}</p>
             <!-- Reviews -->
-            <div class="mt-6">
+            <div class="mt-3">
                 <h3 class="sr-only">Reviews</h3>
                 <div class="flex items-center">
                     <div class="flex items-center">

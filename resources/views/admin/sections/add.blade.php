@@ -7,7 +7,7 @@
             @csrf 
 
             <input type="hidden" value="{{ Auth::user()->id }}" name="admin_id"/>
-            <input type="hidden" value="sections" name="folder"/>
+            <input type="hidden" value="sections" name="urlfolder"/>
     
             <div>
                 @if ($message = Session::get('success'))
@@ -24,9 +24,16 @@
 
             <div class="flex">
                 <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
-                   <div class="mb-6 w-100">
-                        <label for="default-input" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Section Name</label>
-                        <input type="text" id="default-input" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <div class="mb-6 w-100">
+                        <label for="name" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Select Section</label>
+                        <select id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Choose a Section</option>
+                        <option value="Trending">Trending</option>
+                        <option value="Weekend">Weekend</option>
+                        <option value="Weekday">Deal of the Week</option>
+                        <option value="House Hold">House Hold</option>
+                        <option value="Party Time">Party Time</option>
+                        </select>
                     </div> 
                 </div>
                 <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
@@ -43,6 +50,18 @@
                         <option value="Pending">Pending</option>
                         <option value="Publish">Publish</option>
                         <option value="Ordered">Archive</option>
+                        </select>
+                    </div>
+                    <div class="mb-6 w-100">
+                        <label for="position" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Section Position</label>
+                        <select id="position" name="position" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected>Choose a Position</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
                         </select>
                     </div>
 

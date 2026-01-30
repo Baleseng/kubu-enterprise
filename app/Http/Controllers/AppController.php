@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\Section;
 use App\Models\User;
 use DB;
 
-
-class ProductsController extends Controller
+class AppController extends Controller
 {
     public function default(Product $id, Request $request)
     {
@@ -26,17 +26,18 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $url = 'user';
+        $one = Section::where('position', '1')->first();
+        $two = Section::where('position', '2')->first();
+        $three = Section::where('position', '3')->first();
+        $four = Section::where('position', '4')->first();
+        $five = Section::where('position', '5')->first();
 
-        $section = Section::query()->where('position', '1')->get();
-
-        $one =  DB::table('sections')->where('position','1')->orderBy('updated_at', 'desc')->get();
-        $two =  DB::table('sections')->where('position','2')->orderBy('updated_at', 'desc')->get();
-        $three = DB::table('sections')->where('position','3')->orderBy('updated_at', 'desc')->get();
-        $four = DB::table('sections')->where('position','4')->orderBy('updated_at', 'desc')->get();
-        $five = DB::table('sections')->where('position','5')->orderBy('updated_at', 'desc')->get();
-        $six =  DB::table('sections')->where('position','6')->orderBy('updated_at', 'desc')->get();
-
-        return view('/dashboard',compact('url','section','one','two','three','four','five','six'));
+        $trending = DB::table('products')
+        ->where('specialsection','trending')
+        ->orderBy('updated_at', 'desc')
+        ->get();
+        
+        return view('/dashboard',compact('url','one','two','three','four','five','trending'));
     }
 
     public function product(Product $id, User $user, Request $request)

@@ -8,7 +8,7 @@
             @csrf      
             
             <input type="hidden" value="{{ Auth::user()->id }}" name="admin_id"/>
-            <input type="hidden" value="products" name="folder"/>
+            <input type="hidden" value="products" name="urlfolder"/>
     
             <div>
                 @if ($message = Session::get('success'))
@@ -48,9 +48,23 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="bg-gray-100 py-2 mb-3 border border-gray-300 rounded-lg">
+                        <div class="mb-6 w-100 px-2">
+                            <label for="specialsection" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Specials Section</label>
+                            <select id="specialsection" name="specialsection" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option selected>Choose a Section</option>
+                                <option value="Trending">Trending</option>
+                                <option value="Weekend">Weekend</option>
+                                <option value="Weekday">Weekday</option>
+                                <option value="Household">Households</option>
+                                <option value="Part Time">Party Time</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="mb-6 w-100">
                         <label for="category" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Catergory</label>
-                        <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="category" name="firstcategory" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="">Select Category</option>
                             <option value="Groceries">Groceries</option>
                             <option value="Beauty & Health">Beauty & Health</option>
@@ -63,23 +77,24 @@
                     </div>
                     <div class="mb-6 w-100">
                         <label for="section" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Section</label>
-                        <select id="section" disabled name="section" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="section" disabled name="secondcategory" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                           <option value="">Select Section</option>
                         </select>
                     </div>
                     <div class="mb-6 w-100">
                         <label for="subsection" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Subsection</label>
-                        <select id="subsection" disabled name="subsection" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <select id="subsection" disabled name="thirdcategory" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                           <option value="">Select Subsection</option>
                         </select>
                     </div>
+                    
+                </div>
+
+                <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
                     <div class="mb-6 w-100">
                         <label for="default-input" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Brand</label>
                         <input type="text" id="default-input" name="brand" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
-                </div>
-
-                <div class="items-center justify-center p-5 mb-4 rounded-sm bg-gray-50 dark:bg-gray-800">
                     <div class="mb-6 w-100">
                         <label for="default-input" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Name</label>
                         <input type="text" id="default-input" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -92,7 +107,7 @@
 
                     <div class="mb-6 w-100">
                         <label for="message" class="block mb-2 text-base font-bold text-gray-500 dark:text-white">Product Description</label>
-                        <textarea id="message" rows="21" name="description" class="resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                        <textarea id="message" rows="18" name="description" class="resize-none block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
                     </div>
                 
                 </div>
@@ -123,7 +138,7 @@
                         <input type="number" id="default-input" name="quantity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     </div>
                     <div class="bg-gray-100 py-2 mb-3 border border-gray-300 rounded-lg">
-                        <div class="mb-6 w-100  px-2">
+                        <div class="mb-6 w-100 px-2">
                             <label for="default-input" class="block mb-2 text-sm font-medium text-gray-500 dark:text-white">File Key Words</label>
                             <input type="text" id="default-input" value="NA" name="file_keywords" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>

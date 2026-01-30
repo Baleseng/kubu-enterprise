@@ -34,7 +34,7 @@
                         <!-- Content Container -->
                         <h2 class="text-2xl font-bold tracking-tight text-gray-900 mb-5">Product information</h2>
                         <p id="content" class="line-clamp-5 transition-all duration-300">
-                        {{ $id->product_description }}
+                        {{ $id->description }}
                         </p> 
 
                         <!-- Toggle Button -->

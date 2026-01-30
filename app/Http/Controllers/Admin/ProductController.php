@@ -55,23 +55,26 @@ class ProductController extends Controller
         $request->validate([
 
             'admin_id' => 'required',
+            'urlfolder' => 'required|string|max:255',
 
             'file_path' => 'required|file|mimes:pdf,doc,docx,jpg,png|max:2048',
-            'file_keywords' => 'required|string|max:255',
-            'file_description' => 'required|string|max:255',
-            'file_status' => 'required|string|max:255',
-            
+            'specialsection' => 'required|string|max:255',
+            'firstcategory' => 'required|string|max:255',
+            'secondcategory' => 'required|string|max:255',
+            'thirdcategory' => 'required|string|max:255',
+
+            'brand' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'price' => 'nullable|string',
             'description' => 'nullable|string',
+
             'status' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'section' => 'required|string|max:255',
-            'subsection' => 'required|string|max:255',
-            'brand' => 'required|string|max:255',
             'stock' => 'required',
             'quantity' => 'nullable|string',
-            'folder' => 'required|string|max:255',
+
+            'file_keywords' => 'required|string|max:255',
+            'file_description' => 'required|string|max:255',
+            'file_status' => 'required|string|max:255',
         ]);
 
         $filePath = $request->file('file_path')->store('images','public');
@@ -79,26 +82,29 @@ class ProductController extends Controller
         Product::create([
             
             'admin_id' => $request->admin_id,
+            'urlfolder' => $request->urlfolder,
 
             'file_path' => $filePath,
-            'file_keywords' => $request->file_keywords,
-            'file_description' => $request->file_description,
-            'file_status' => $request->file_status,
-
+            'specialsection' => $request->specialsection,
+            'firstcategory' => $request->firstcategory,
+            'secondcategory' => $request->secondcategory,
+            'thirdcategory' => $request->thirdcategory,
+            
+            'brand' => $request->brand,
             'name' => $request->name,
             'price' => $request->price,
             'description' => $request->description,
             'status' => $request->status,
-            'category' => $request->category,
-            'section' => $request->section,
-            'subsection' => $request->subsection,
-            'brand' => $request->brand,
+            
             'stock' => $request->stock,
             'quantity' => $request->quantity,
-            'folder' => $request->folder,
+
+            'file_keywords' => $request->file_keywords,
+            'file_description' => $request->file_description,
+            'file_status' => $request->file_status,
         ]);
 
-        return redirect()->route('admin.dashboard')
+        return redirect()->route('admin.products.index')
             ->with('success', 'product created successfully.');
     }
 

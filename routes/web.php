@@ -11,13 +11,12 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\ReportController;
-
-use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\AppController;
 
 
-Route::get('/home',[ProductsController::class, 'default'])->name('home');
+Route::get('/home',[AppController::class, 'default'])->name('home');
 
 // User routes
 Route::middleware('auth:web')->group(function () {
@@ -25,11 +24,11 @@ Route::middleware('auth:web')->group(function () {
 //**********************************************************************************************//
 //**************************************PRODUCTS CONTROLLER*************************************//
 //**********************************************************************************************//
-    Route::get('/',[ProductsController::class, 'index'])->name('dashboard');
+    Route::get('/',[AppController::class, 'index'])->name('dashboard');
     
-    Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
+    Route::get('/product/{id}', [AppController::class, 'product'])->name('product');
 
-    Route::get('/example', [ProductsController::class, 'example'])->name('example');
+    Route::get('/example', [AppController::class, 'example'])->name('example');
 
 //**********************************************************************************************//
 //************************************PROFILE CONTROLLER****************************************//

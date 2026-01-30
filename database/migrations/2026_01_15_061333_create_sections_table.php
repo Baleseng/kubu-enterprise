@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
 
             $table->integer('admin_id')->nullable();
-            $table->string('name');
-            $table->text('description');
-            $table->string('status');
-
-            $table->string('folder')->nullable();
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('position')->default(1);
+            $table->string('status')->nullable();
+            $table->string('urlfolder')->nullable();
 
             $table->timestamps();
         });

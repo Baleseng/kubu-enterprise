@@ -48,28 +48,29 @@
                         <tbody>
                             <tr class="bg-neutral-secondary-soft border-b border-default">
                                 <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Price</th>
-                                <td class="px-3 py-2 font-bold">R {{ $id->product_price }}</td>
-                            </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Status</th>
-                                <td class="px-3 py-2 font-bold">{{ $id->product_status }}</td>
-                            </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Category</th>
-                                <td class="px-3 py-2 font-bold">{{ $id->product_category }}</td>
-                            </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Section</th>
-                                <td class="px-3 py-2 font-bold">{{ $id->product_section }}</td>
-                            </tr>
-                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
-                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Sub-Section</th>
-                                <td class="px-3 py-2 font-bold">{{ $id->product_subsection }}</td>
+                                <td class="px-3 py-2 font-bold">R {{ $id->price }}</td>
                             </tr>
                             <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
                                 <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Brand</th>
-                                <td class="px-3 py-2 font-bold">{{ $id->product_brand }}</td>
+                                <td class="px-3 py-2 font-bold">{{ $id->brand }}</td>
                             </tr>
+                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Product</th>
+                                <td class="px-3 py-2 font-bold">{{ $id->name }}</td>
+                            </tr>
+                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Category</th>
+                                <td class="px-3 py-2 font-bold">{{ $id->firstcategory }}</td>
+                            </tr>
+                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Section</th>
+                                <td class="px-3 py-2 font-bold">{{ $id->secondcategory }}</td>
+                            </tr>
+                            <tr class="odd:bg-neutral-primary even:bg-neutral-secondary-soft border-b border-default">
+                                <th scope="row" class="px-3 py-2 font-medium text-heading whitespace-nowrap">Sub-Section</th>
+                                <td class="px-3 py-2 font-bold">{{ $id->thirdcategory }}</td>
+                            </tr>
+                            
                             
                         </tbody>
                     </table>

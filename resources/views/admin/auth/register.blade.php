@@ -2,7 +2,7 @@
     <form method="POST" action="{{ route('admin.register') }}">
         @csrf
 
-        <input type="hidden" value="members" name="folder"/>
+        <input type="hidden" value="members" name="urlfolder"/>
         <input type="hidden" value="active" name="status"/>
 
         <!-- Name -->

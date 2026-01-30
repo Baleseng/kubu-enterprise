@@ -7,16 +7,14 @@
                 <label for="checkbox-all-search" class="sr-only">checkbox</label>
             </div>
         </th>
+        <th scope="col" class="px-6 py-3"></th>
         <th scope="col" class="px-6 py-3">Name</th>
         <th scope="col" class="px-6 py-3">Price</th>
         <th scope="col" class="px-6 py-3">Status</th>
         <th scope="col" class="px-6 py-3">Quantity</th>
         <th scope="col" class="px-6 py-3">Published</th>
         <th scope="col" class="px-6 py-3">Action</th>
-        <th scope="col" class="px-6 py-3">Last Updated</th>
-        
-        
-        
+        <th scope="col" class="px-6 py-3">Last Updated</th>    
     </tr>
 </thead>
 

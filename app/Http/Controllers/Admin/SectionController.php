@@ -40,10 +40,11 @@ class SectionController extends Controller
 
             'admin_id' => 'required',
 
-            'name' => 'required|string|max:255',
+            'name' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'status' => 'required|string|max:255',
-            'folder' => 'required|string|max:255',
+            'status' => 'nullable|string|max:255',
+            'position' => 'nullable|integer|min:1',
+            'urlfolder' => 'required|string|max:255',
         ]);
 
         Section::create([
@@ -53,10 +54,11 @@ class SectionController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
-            'folder' => $request->folder,
+            'position' => $request->position,
+            'urlfolder' => $request->urlfolder,
         ]);
 
-        return redirect()->route('admin.dashboard')
+        return redirect()->route('admin.sections.index')
             ->with('success', 'Section created successfully.');
     }
 
@@ -71,17 +73,27 @@ class SectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Section $section)
+    public function edit(Admin $url, Section $id)
     {
-        //
+        $url = 'admin';
+        Section::find($id);
+        return view('admin.sections.edit', compact('id','url'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Section $section)
+    public function update(Request $request, Section $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|string|max:255',
+            'position' => 'required|integer|min:1',
+        ]);
+
+        $id->update($validated);
+        return redirect()->route('admin.sections.index')->with('success', 'section updated successfully.');
     }
 
     /**

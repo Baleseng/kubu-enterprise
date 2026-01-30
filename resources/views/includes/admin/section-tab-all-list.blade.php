@@ -8,10 +8,9 @@
                 </div>
             </th>
             <th scope="col" class="px-6 py-3">Name</th>
-            <th scope="col" class="px-6 py-3">Email</th>
+            <th scope="col" class="px-6 py-3">Position</th>
             <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3">Expense</th>
-            <th scope="col" class="px-6 py-3">Action</th>
+            <th scope="col" class="px-6 py-3">Folder</th>
 
             <th scope="col" class="px-6 py-3">Last Updated</th>
         </tr>
@@ -26,11 +25,11 @@
                 </div>
             </td>
             <td scope="row" class="px-6 py-4">
-                <a href="" class="font-medium w-56"></a> 
+                <a href="" class=" font-medium text-gray-900 w-56 dark:text-white">{{ $content->name }}</a> 
             </td>
-            <td class="px-6 py-4"><span class="font-medium"></span></td>
-            <td class="px-6 py-4"><span class="font-medium">Active</span></td>
-            <td class="px-6 py-4"><span class="font-medium">R 10000</span></td>
+            <td scope="row" class="px-6 py-4"><span class="font-medium">{{ $content->position }}</span></td>
+            <td scope="row" class="px-6 py-4"><span class="font-medium">{{ $content->status }}</span></td>
+            <td class="px-6 py-4"><span class="font-medium">{{ $content->urlfolder }}</span></td>
             <td class="px-5 py-4">
                 <ul class="flex flex-wrap items-center justify-center text-heading">
                     <li>
@@ -39,7 +38,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="me-4 md:me-6">
+                        <a href="{{ url($url.'/sections/edit/'.$content->id . '-' . str_replace(' ', '-', $content->name)) }}" class="me-4 md:me-6">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                     </li>

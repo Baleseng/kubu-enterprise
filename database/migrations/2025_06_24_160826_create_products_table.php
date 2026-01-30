@@ -17,22 +17,25 @@ return new class extends Migration
             $table->integer('admin_id')->nullable();
 
             $table->string('file_path'); // This will store the path to the uploaded file
-            $table->string('file_keywords')->nullable();
-            $table->text('file_description')->nullable();
-            $table->string('file_status')->nullable();
+            $table->string('specialsection')->nullable();
+            $table->string('firstcategory');
+            $table->string('secondcategory');
+            $table->string('thirdcategory')->nullable();
 
             $table->string('name');
             $table->integer('price');
             $table->text('description');
             $table->string('status');
             $table->string('stock')->nullable();
-            $table->string('category');
-            $table->string('section');
-            $table->string('subsection')->nullable();
+            
             $table->string('brand')->nullable();
             $table->integer('quantity');
 
-            $table->string('folder')->nullable();
+            $table->string('file_keywords')->nullable();
+            $table->text('file_description')->nullable();
+            $table->string('file_status')->nullable();
+
+            $table->string('urlfolder')->nullable();
 
             $table->timestamps();
         });

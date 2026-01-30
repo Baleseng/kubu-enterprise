@@ -25,7 +25,7 @@ class RegisteredAdminController extends Controller
             'mobile' => 'required|string|mobile|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
 
-            'folder' => 'required|string|max:255',
+            'urlfolder' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
 
@@ -35,7 +35,7 @@ class RegisteredAdminController extends Controller
             'mobile' => $request->mobile,
             'password' => Hash::make($request->password),
 
-            'folder' => $request->folder,
+            'urlfolder' => $request->urlfolder,
             'status' => $request->status,
         ]);
 

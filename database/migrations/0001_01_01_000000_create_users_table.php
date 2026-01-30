@@ -20,7 +20,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('status')->nullable();
             $table->string('mobile')->unique();
-            $table->string('folder')->nullable();
+            $table->string('urlfolder')->nullable();
             $table->timestamps();
         });
 
