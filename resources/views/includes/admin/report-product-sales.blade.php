@@ -3,7 +3,7 @@
   <div class="flex justify-between">
     <div>
       <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sales per month</p>
     </div>
     <div
       class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div id="area-chart"></div>
+  <div id="sale-line-chart"></div>
 
   <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
     <div class="flex justify-between items-center pt-5">
@@ -63,6 +63,42 @@
 </div>
 
 <script>
+    Highcharts.chart('sale-line-chart', {
+    title: {
+        text: 'Sales Growth'
+    },
 
+    accessibility: {
+        point: {
+            valueDescriptionFormat:
+                '{xDescription}{separator}{value} million(s)'
+        }
+    },
+
+    xAxis: {
+        title: {
+            text: 'Month'
+        },
+        categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug','Sept','Oct','Nov','Dec']
+    },
+
+    yAxis: {
+        type: 'logarithmic',
+        title: {
+            text: 'Number of Items (in millions)'
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br />',
+        pointFormat: '{point.y} million(s)'
+    },
+
+    series: [{
+        name: 'Sales Product',
+        data: [1006, 4000, 3000, 2025, 3192, 4673, 4000, 3000, 2025, 3192, 4673, 5200],
+        color: 'var(--highcharts-color-1, #2caffe)'
+    }]
+});
 
 </script>

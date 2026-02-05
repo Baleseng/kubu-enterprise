@@ -18,7 +18,9 @@ class ProductController extends Controller
     public function index(Admin $url,Request $request)
     {
         $url = 'admin';
+        
         $product = DB::table('products')->orderBy('updated_at', 'desc')->get();
+
         $product_unassign = DB::table('products')->where('status','unassign')->orderBy('updated_at', 'desc')->get();
         $product_ordered = DB::table('products')->where('status','ordered')->orderBy('updated_at', 'desc')->get();
         $product_prepared = DB::table('products')->where('status','prepared')->orderBy('updated_at', 'desc')->get();

@@ -31,6 +31,13 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('product','section','customer','admin','report','url'));
     }
 
+    public function region(Request $request)
+    {
+        $url = 'admin';
+        return view('admin.region.index', compact('url'));
+    }
+
+
     public function index(Request $request)
     {
         $url = 'admin';

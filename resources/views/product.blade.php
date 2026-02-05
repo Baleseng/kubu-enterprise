@@ -19,9 +19,6 @@
                             @csrf
                             <div class="input-group mb-3">
                                 
-                                <input type="hidden" name="" value="{{ $id->product_name }}">
-                                <input type="hidden" name="" value="{{ $id->product_price }}">
-
                                 <span>Increase Quantity:</span> 
                                 <input type="number" name="quantity" value="1" min="1" class="bg-transparent border-transparent w-24 form-control">
 

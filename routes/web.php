@@ -42,8 +42,9 @@ Route::middleware('auth:web')->group(function () {
 //**********************************************************************************************//       
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+    
     Route::put('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 
 //**********************************************************************************************//
 //************************************CHECKOUT CONTROLLER***************************************//
@@ -76,6 +77,7 @@ Route::prefix('admin')->group(function () {
 //**************************************ADMIN CONTROLLER****************************************//
 //**********************************************************************************************//        
         Route::get('dashboard',               [AdminController::class,'dashboard'])->name('admin.dashboard');
+        Route::get('region',                  [AdminController::class,'region'])->name('admin.region');
 
 //**********************************************************************************************//
 //*************************************PRODUCT CONTROLLER***************************************//

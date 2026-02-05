@@ -1,6 +1,7 @@
 import './bootstrap';
 import './preview';
 import './options';
+import './regionmap';
 	
 import Alpine from 'alpinejs';
 

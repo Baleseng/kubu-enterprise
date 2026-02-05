@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\User;
+use DB;
 
 class CartController extends Controller
 {
@@ -19,7 +20,18 @@ class CartController extends Controller
             return $item->product->price * $item->quantity;
         });
 
-        return view('cart.index', compact('cartItems', 'total'));
+        // Calculate the total price
+        //$total = 0;
+        //foreach ($cartItems as $item) {
+        //    $total += $item->quantity * $item->price;
+        //}
+
+        $products = DB::table('products')
+        ->where('specialsection','trending')
+        ->orderBy('updated_at', 'desc')
+        ->get();
+
+        return view('cart.index', compact('cartItems', 'total','products'));
     }
 
     public function add(Product $product, Request $request)
@@ -45,10 +57,37 @@ class CartController extends Controller
 
     public function remove(CartItem $cartItem)
     {
-        $this->authorize('delete', $cartItem);
-        
-        $cartItem->delete();
-        return back()->with('success', 'Item removed from cart');
+       
+        // Find the cart item
+        $cartItem = Cart::where('user_id', Auth::id())
+            ->where('id', $cartItemId)
+            ->first();
+
+        if ($cartItem) {
+            // Delete the cart item
+            $cartItem->delete();
+
+            // Calculate the updated total price
+            $cartItems = Cart::with('file')->where('user_id', Auth::id())->get();
+            $totalPrice = $cartItems->sum(function ($item) {
+                return $item->quantity * $item->price;
+            });
+
+            // Get the updated cart count
+            $cartCount = $cartItems->sum('file_quantity');
+
+            // Return JSON response for AJAX
+            return response()->json([
+                'success' => true,
+                'totalPrice' => $totalPrice,
+                'cartCount' => $cartCount,
+            ]);
+        }
+
+        return response()->json([
+            'success' => false,
+            'message' => 'Item not found in cart!',
+        ], 404);
     }
 
     public function update(CartItem $cartItem, Request $request)

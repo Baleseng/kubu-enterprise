@@ -22,7 +22,166 @@
             </div>
         </div>
 
+        <div class="mb-5 py-1.5 bg-gray-50 dark:bg-gray-800 h-142 max-w-full overflow-y-hidden  "> 
+            
+            <div class="p-2 bg-gray-300">Report Performance</div>
+
+            <div id="'sections"></div>
+            
+        </div>
+
     </div>
 </div>
+
+<script>
+    Highcharts.setOptions({
+    chart: {
+        styledMode: true
+    }
+});
+Dashboards.board('sections', {
+    dataPool: {
+        connectors: [{
+            id: 'VegeTable',
+            type: 'CSV',
+            csv: document.querySelector('#csv').innerHTML
+        }]
+    },
+    gui: {
+        layouts: [{
+            rows: [{
+                cells: [{
+                    id: 'top-left'
+                }, {
+                    id: 'top-right'
+                }]
+            }, {
+                cells: [{
+                    id: 'bottom'
+                }]
+            }]
+        }]
+    },
+    components: [{
+        renderTo: 'top-left',
+        type: 'Highcharts',
+        sync: {
+            highlight: true
+        },
+        connector: {
+            id: 'VegeTable'
+        },
+        chartOptions: {
+            chart: {
+                type: 'bar'
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    colorByPoint: true
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    enabled: false
+                }
+            }
+        }
+    }, {
+        renderTo: 'top-right',
+        type: 'Highcharts',
+        sync: {
+            highlight: true
+        },
+        connector: {
+            id: 'VegeTable'
+        },
+        chartOptions: {
+            chart: {
+                type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    innerSize: '60%'
+                },
+                series: {
+                    colorByPoint: true
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    enabled: false
+                }
+            }
+        }
+    }, {
+        renderTo: 'bottom',
+        type: 'Highcharts',
+        sync: {
+            highlight: true
+        },
+        connector: {
+            id: 'VegeTable'
+        },
+        chartOptions: {
+            chart: {
+                type: 'scatter'
+            },
+            credits: {
+                enabled: false
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                series: {
+                    colorByPoint: true,
+                    dataSorting: {
+                        enabled: true,
+                        sortKey: 'y'
+                    },
+                    marker: {
+                        radius: 8
+                    }
+                }
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    enabled: false
+                }
+            }
+        }
+    }]
+});
+</script>
 
 </x-admin-layout>

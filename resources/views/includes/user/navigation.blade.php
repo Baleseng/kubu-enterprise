@@ -150,30 +150,14 @@
     <div class="max-w-5xl px-4 py-3 mx-auto">
         <div class="flex items-center">
             <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-base">
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold" aria-current="page">Promo Specials</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Groceries</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Beauty & Health</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Baby & Toddlers</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Stationary</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Liquor</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Outdoor</a>
-                </li>
-                <li>
-                    <a href="#" class="text-heading hover:underline font-bold">Electronics</a>
-                </li>
+                <li><a href="#" class="hover:underline" aria-current="page">Promo Specials</a></li>
+                <li><a href="#" class="hover:underline">Groceries</a></li>
+                <li><a href="#" class="hover:underline">Beauty & Health</a></li>
+                <li><a href="#" class="hover:underline">Baby & Toddlers</a></li>
+                <li><a href="#" class="hover:underline">Stationary</a></li>
+                <li><a href="#" class="hover:underline">Liquor</a></li>
+                <li><a href="#" class="hover:underline">Outdoor</a></li>
+                <li><a href="#" class="hover:underline">Electronics</a></li>
             </ul>
         </div>
     </div>

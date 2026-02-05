@@ -2,6 +2,7 @@
 window.selectData = {
   'Groceries': {
     sections: {
+      'Bakery': ["Bread","Bagels","Cakes","Croissants","Cupcakes","Pies","Rolls","Scones","Tarts","Muffins","Wraps"],
       'Breakfast': ["Cereal","Milk"],
       'Cooking': ["Cans, Jars & Packaged Food","Grains, Rice & Pasta","Oil & Vinegar","Soya, Meal & Additives","Suger & Sweeteners","Salt, Herbs & Spices","Soup, Gravy & Stock"],
       'Sauces, Spreads & Condiments': ["Spreads", "Sauces & Mayonnaise","Salad Dressing","Pickles & Relishes"],

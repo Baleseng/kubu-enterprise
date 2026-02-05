@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div id="area-chart"></div>
+  <div id="order-line-chart"></div>
 
   <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
     <div class="flex justify-between items-center pt-5">
@@ -63,77 +63,42 @@
 </div>
 
 <script>
-    
-const options = {
-  chart: {
-    height: "100%",
-    maxWidth: "100%",
-    type: "area",
-    fontFamily: "Inter, sans-serif",
-    dropShadow: {
-      enabled: false,
+    Highcharts.chart('order-line-chart', {
+    title: {
+        text: 'Order Status'
     },
-    toolbar: {
-      show: false,
-    },
-  },
-  tooltip: {
-    enabled: true,
-    x: {
-      show: false,
-    },
-  },
-  fill: {
-    type: "gradient",
-    gradient: {
-      opacityFrom: 0.55,
-      opacityTo: 0,
-      shade: "#1C64F2",
-      gradientToColors: ["#1C64F2"],
-    },
-  },
-  dataLabels: {
-    enabled: false,
-  },
-  stroke: {
-    width: 6,
-  },
-  grid: {
-    show: false,
-    strokeDashArray: 4,
-    padding: {
-      left: 2,
-      right: 2,
-      top: 0
-    },
-  },
-  series: [
-    {
-      name: "New users",
-      data: [6500, 6418, 6456, 6526, 6356, 6456],
-      color: "#1A56DB",
-    },
-  ],
-  xaxis: {
-    categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
-    labels: {
-      show: false,
-    },
-    axisBorder: {
-      show: false,
-    },
-    axisTicks: {
-      show: false,
-    },
-  },
-  yaxis: {
-    show: false,
-  },
-}
 
-if (document.getElementById("area-chart") && typeof ApexCharts !== 'undefined') {
-  const chart = new ApexCharts(document.getElementById("area-chart"), options);
-  chart.render();
-}
+    accessibility: {
+        point: {
+            valueDescriptionFormat:
+                '{xDescription}{separator}{value} million(s)'
+        }
+    },
+
+    xAxis: {
+        title: {
+            text: '2025'
+        },
+        categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul', 'Aug','Sept','Oct','Nov','Dec']
+    },
+
+    yAxis: {
+        type: 'logarithmic',
+        title: {
+            text: 'Number of orders (in millions)'
+        }
+    },
+
+    tooltip: {
+        headerFormat: '<b>{series.name}</b><br />',
+        pointFormat: '{point.y} million(s)'
+    },
+
+    series: [{
+        name: 'Internet Users',
+        data: [16, 361, 1018, 2025, 3192, 4673, 5200,16, 361, 1018, 2025, 3192,],
+        color: 'var(--highcharts-color-1, #2caffe)'
+    }]
+});
 
 </script>
