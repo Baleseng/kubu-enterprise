@@ -22,7 +22,7 @@ class AdminController extends Controller
     {
         $url = 'admin';
 
-        $product = DB::table('products')->orderBy('updated_at', 'desc')->get();
+        $product = DB::table('products')->limit(8)->get();
         $section = DB::table('sections')->orderBy('updated_at', 'desc')->get();  
         $customer = DB::table('users')->orderBy('updated_at', 'desc')->get();
         $admin = DB::table('admins')->orderBy('updated_at', 'desc')->get();

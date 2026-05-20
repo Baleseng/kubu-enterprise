@@ -3,7 +3,7 @@
   <div class="flex justify-between">
     <div>
       <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Revenue</p>
     </div>
     <div
       class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -13,7 +13,9 @@
       </svg>
     </div>
   </div>
-  <div id="columnchart"></div>
+
+  <div id="hori-barchart"></div>
+
   <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
     <div class="flex justify-between items-center pt-5">
       <!-- Button -->
@@ -51,7 +53,7 @@
       <a
         href="#"
         class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-        Users Report
+        Revenue Breakdown Report
         <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
         </svg>
@@ -61,49 +63,72 @@
 </div>
 
 <script>
-Highcharts.chart('columnchart', {
+Highcharts.chart('hori-barchart', {
     chart: {
-        type: 'column'
+        type: 'bar'
     },
     title: {
-        text: 'Corn vs wheat estimated production for 2023'
+        text: 'Overall Revenue'
     },
     subtitle: {
-        text:
-            'Source: <a target="_blank" ' +
-            'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>'
+        text: 'Source: <a ' +
+            'href="https://en.wikipedia.org/wiki/List_of_continents_and_continental_subregions_by_population"' +
+            'target="_blank">Wikipedia.org</a>'
     },
     xAxis: {
-        categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
-        crosshair: true,
-        accessibility: {
-            description: 'Countries'
-        }
+        categories: ['Q1', 'Q2', 'Q3', 'Q4'],
+        title: {
+            text: null
+        },
+        gridLineWidth: 1,
+        lineWidth: 0
     },
     yAxis: {
         min: 0,
         title: {
-            text: '1000 metric tons (MT)'
-        }
+            text: 'Population (millions)',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        },
+        gridLineWidth: 0
     },
     tooltip: {
-        valueSuffix: ' (1000 MT)'
+        valueSuffix: ' millions'
     },
     plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
+        bar: {
+            borderRadius: '50%',
+            dataLabels: {
+                enabled: true
+            },
+            groupPadding: 0.1
         }
     },
-    series: [
-        {
-            name: 'Corn',
-            data: [387749, 280000, 129000, 64300, 54000, 34300]
-        },
-        {
-            name: 'Wheat',
-            data: [45321, 140000, 10000, 140500, 19500, 113500]
-        }
-    ]
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: 'var(--highcharts-background-color, #ffffff)',
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Cost',
+        data: [632, 727, 3202, 721]
+    }, {
+        name: 'Profit',
+        data: [814, 841, 3714, 726]
+    }, {
+        name: 'Year 2021',
+        data: [1393, 1031, 4695, 745]
+    }]
 });
 </script>

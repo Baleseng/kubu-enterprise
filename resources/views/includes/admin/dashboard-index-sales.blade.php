@@ -3,7 +3,7 @@
   <div class="flex justify-between">
     <div>
       <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Sale of the  week</p>
+      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Monthly Sales</p>
     </div>
     <div
       class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -79,7 +79,7 @@
         title: {
             text: 'Month'
         },
-        categories: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July']
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
 
     yAxis: {
@@ -96,7 +96,7 @@
 
     series: [{
         name: 'Sales Product',
-        data: [1006, 4000, 3000, 2025, 3192, 4673, 5200],
+        data: [1006, 4000, 3000, 2025, 3192, 4673, 5200, 4000, 3000, 2025, 3192, 4673],
         color: 'var(--highcharts-color-1, #2caffe)'
     }]
 });

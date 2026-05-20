@@ -22,7 +22,7 @@
 
                 <dl class="flex items-center justify-between gap-4">
                     <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Tax</dt>
-                    <dd class="text-base font-medium text-gray-900 dark:text-white">R 0</dd>
+                    <dd class="text-base font-medium text-red-600 dark:text-white">R 0</dd>
                 </dl>
             </div>
 

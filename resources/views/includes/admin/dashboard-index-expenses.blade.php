@@ -1,9 +1,8 @@
-
 <div class="w-full dark:bg-gray-800 p-4 md:p-6">
   <div class="flex justify-between">
     <div>
       <h5 class="leading-none text-3xl font-bold text-gray-900 dark:text-white pb-2">32.4k</h5>
-      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+      <p class="text-base font-normal text-gray-500 dark:text-gray-400">Monthly Expenses</p>
     </div>
     <div
       class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
@@ -13,7 +12,7 @@
       </svg>
     </div>
   </div>
-  <div id="area-chart"></div>
+  <div id="columnchart"></div>
   <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
     <div class="flex justify-between items-center pt-5">
       <!-- Button -->
@@ -61,5 +60,49 @@
 </div>
 
 <script>
-
+Highcharts.chart('columnchart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Overall Expenses'
+    },
+    subtitle: {
+        text:
+            'Source: <a target="_blank" ' +
+            'href="https://www.indexmundi.com/agriculture/?commodity=corn">indexmundi</a>'
+    },
+    xAxis: {
+        categories: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        crosshair: true,
+        accessibility: {
+            description: 'Countries'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '1000 metric tons (MT)'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' (1000 MT)'
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+        }
+    },
+    series: [
+        {
+            name: 'Cost',
+            data: [387749, 280000, 129000, 64300, 54000, 34300, 387749, 280000, 129000, 64300, 54000, 34300]
+        },
+        {
+            name: 'Profit',
+            data: [45321, 140000, 10000, 140500, 19500, 113500, 45321, 140000, 10000, 140500, 19500, 113500]
+        }
+    ]
+});
 </script>

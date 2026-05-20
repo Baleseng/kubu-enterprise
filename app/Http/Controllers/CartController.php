@@ -55,39 +55,18 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success', 'Product added to cart!');
     }
 
-    public function remove(CartItem $cartItem)
-    {
-       
-        // Find the cart item
-        $cartItem = Cart::where('user_id', Auth::id())
-            ->where('id', $cartItemId)
-            ->first();
+    public function remove(CartItem $cartItem){
+    // 1. Security check: Ensure the item belongs to the logged-in user
+    if ($cartItem->user_id !== Auth::id()) {
+        abort(403, 'Unauthorized action.');
+    }
 
-        if ($cartItem) {
-            // Delete the cart item
-            $cartItem->delete();
+    // 2. Perform the deletion
+    $cartItem->delete();
 
-            // Calculate the updated total price
-            $cartItems = Cart::with('file')->where('user_id', Auth::id())->get();
-            $totalPrice = $cartItems->sum(function ($item) {
-                return $item->quantity * $item->price;
-            });
-
-            // Get the updated cart count
-            $cartCount = $cartItems->sum('file_quantity');
-
-            // Return JSON response for AJAX
-            return response()->json([
-                'success' => true,
-                'totalPrice' => $totalPrice,
-                'cartCount' => $cartCount,
-            ]);
-        }
-
-        return response()->json([
-            'success' => false,
-            'message' => 'Item not found in cart!',
-        ], 404);
+    // 3. Redirect to the cart index route with a success message
+    return redirect()->route('cart.index')
+                     ->with('success', 'Item removed from your cart.');
     }
 
     public function update(CartItem $cartItem, Request $request)

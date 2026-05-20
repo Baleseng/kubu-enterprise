@@ -3,7 +3,7 @@
 <div class="p-4 sm:ml-64">
     <div class="p-4 rounded-lg dark:border-gray-700 mt-15">
 
-        <div class="mb-5 py-1.5 bg-gray-50 dark:bg-gray-800 h-142 max-w-full overflow-y-hidden  "> 
+        <div class="mb-5 py-1.5 bg-gray-50 dark:bg-gray-800 max-w-full overflow-y-hidden h-142"> 
             <a href="{{ url('admin/products/post') }}" class="flex justify-center content-center text-center text-white uppercase w-60 py-3 bg-blue-700 hover:bg-blue-800 font-medium text-sm px-5  focus:outline-none group">
                 <span class="ms-3">Post Product</span>
             </a>

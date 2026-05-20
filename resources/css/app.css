@@ -41,7 +41,6 @@
 }
 
 .region-map-province-list {display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; margin-top: 15px;}
-
 .region-map-title {text-align: center; margin-bottom: 15px; color: #2c3e50; font-size: 1.5rem;}
 .region-map-province {fill: #DBEAFE; stroke: #fff; stroke-width: 1; transition: all 0.3s ease; cursor: pointer;}
 .region-map-province:hover {fill:#1E3A8A; stroke-width: 2;}
@@ -58,7 +57,7 @@
 .region-map-info-panel {flex:1; border-radius:10px; padding:25px; display:flex; flex-direction: column;}
 
 .region-map-detail-item {background:#f8f9fa; padding:5px;}
-    .region-map-detail-label {font-size: 1rem; color: #2c3e50; text-align:center; border:1px #cccccc solid; padding:5px;}
+    .region-map-detail-label {font-size: 1rem; color: #2c3e50; text-align:center; border-top: 1px #cccccc solid; padding:5px;}
     #region-map-detail-value {font-size: 1rem; color: #2c3e50; }
 
 .region-map-placeholder {text-align: center;color: #ffffff;font-style: bold; font-size:21px; margin: auto;}
